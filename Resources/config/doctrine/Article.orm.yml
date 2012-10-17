@@ -1,0 +1,129 @@
+Zorbus\ArticleBundle\Entity\Article:
+    type: entity
+    table: zorbus_article_article
+    repositoryClass: Zorbus\ArticleBundle\Entity\ArticleRepository
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        title:
+            type: string
+            length: 255
+            nullable: false
+        subtitle:
+            type: string
+            length: 255
+            nullable: true
+        body:
+            type: text
+            nullable: false
+        lang:
+            type: string
+            length: 5
+            nullable: true
+            default: en
+        type:
+            type: string
+            length: 255
+            nullable: true
+        attachment:
+            type: string
+            length: 255
+            nullable: true
+        image:
+            type: string
+            length: 255
+            nullable: true
+        status:
+            type: string
+            length: 255
+        author:
+            type: string
+            length: 255
+            nullable: true
+        source:
+            type: string
+            length: 255
+            nullable: true
+        local:
+            type: string
+            length: 255
+            nullable: true
+        is_highlighted:
+            type: boolean
+            default: false
+            nullable: true
+        is_enabled:
+            type: boolean
+            default: true
+            nullable: true
+        date_show:
+            type: datetime
+            nullable: true
+        date_hide:
+            type: datetime
+            nullable: true
+        date_published:
+            type: boolean
+            default: true
+            nullable: true
+        date_event:
+            type: string
+            length: 255
+            nullable: true
+        user_id:
+            type: integer
+            nullable: true
+        observations:
+            type: text
+            nullable: true
+        slug:
+            type: string
+            length: 255
+            nullable: true
+            gedmo:
+                slug:
+                    separator: '-'
+                    style: default
+                    fields:
+                        - title
+        created_at:
+            type: datetime
+            nullable: true
+            gedmo:
+                timestampable:
+                    on: create
+        updated_at:
+            type: datetime
+            nullable: true
+            gedmo:
+                timestampable:
+                    on: update
+    manyToMany:
+        categories:
+            targetEntity: Category
+            inversedBy: articles
+            joinTable:
+                name: zorbus_article_article_category
+                joinColumns:
+                    article_id:
+                        referencedColumnName: id
+                        onDelete: CASCADE
+                inverseJoinColumns:
+                    category_id:
+                        referencedColumnName: id
+                        onDelete: CASCADE
+        tags:
+            targetEntity: Tag
+            inversedBy: articles
+            joinTable:
+                name: zorbus_article_article_tag
+                joinColumns:
+                    article_id:
+                        referencedColumnName: id
+                        onDelete: CASCADE
+                inverseJoinColumns:
+                    tag_id:
+                        referencedColumnName: id
+                        onDelete: CASCADE

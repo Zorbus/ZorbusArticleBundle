@@ -1,0 +1,15 @@
+zorbus_article_list:
+    pattern:  /articles
+    defaults: { _controller: ZorbusArticleBundle:Article:index }
+
+zorbus_article_list_tag:
+    pattern:  /articles/tag/{slug}
+    defaults: { _controller: ZorbusArticleBundle:Article:tag }
+
+zorbus_article_list_category:
+    pattern:  /articles/category/{slug}
+    defaults: { _controller: ZorbusArticleBundle:Article:category }
+
+zorbus_article_show:
+    pattern:  /article/show/{slug}
+    defaults: { _controller: ZorbusArticleBundle:Article:show }

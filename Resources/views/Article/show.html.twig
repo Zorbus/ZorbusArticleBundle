@@ -1,0 +1,29 @@
+{% extends 'ZorbusArticleBundle::layout.html.twig' %}
+
+{% block body %}
+    {% if article %}
+        <h1>{{ article.title }}</h1>
+        {% if article.subtitle | length > 0 %}
+            <h2>{{ article.subtitle }}</h2>
+        {% endif %}
+        {{ article.body | raw }}
+
+        {% if article.categories | length > 0 %}
+            <small>Categories:
+            {% for category in article.categories %}
+                    <a href="{{ path('zorbus_article_list_category', {'slug': category.slug }) }}">{{ category.name }}</a>
+            {% endfor %}
+            </small>
+        {% endif %}
+
+        {% if article.tags | length > 0 %}
+            <small>Tags:
+            {% for tag in article.tags %}
+                    <a href="{{ path('zorbus_article_list_tag', {'slug': tag.slug }) }}">{{ tag.name }}</a>
+            {% endfor %}
+            </small>
+        {% endif %}
+    {% else %}
+        <p>Invalid article.</p>
+    {% endif %}
+{% endblock %}

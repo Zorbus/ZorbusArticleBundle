@@ -1,0 +1,10 @@
+{% extends 'ZorbusArticleBundle::layout.html.twig' %}
+
+{% block body %}
+    {% if category %}
+        <h1>Articles in category {{ category.name }}</h1>
+        {% include 'ZorbusArticleBundle:Article:list.html.twig' with {'articles': articles} %}
+    {% else %}
+        <p>Invalid category.</p>
+    {% endif %}
+{% endblock %}

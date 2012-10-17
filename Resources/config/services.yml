@@ -1,0 +1,10 @@
+parameters:
+    zorbus_article.article.repository.class: Zorbus\ArticleBundle\Entity\ArticleRepository
+    zorbus_article.article.repository: ZorbusArticleBundle:Article
+    zorbus_article.tag.repository: ZorbusArticleBundle:Tag
+    zorbus_article.category.repository: ZorbusArticleBundle:Category
+
+services:
+    zorbus_article_article_repository:
+        class: %zorbus_article.article.repository.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

@@ -1,0 +1,6 @@
+{% extends 'ZorbusArticleBundle::layout.html.twig' %}
+
+{% block body %}
+    <h1>Articles</h1>
+    {% include 'ZorbusArticleBundle:Article:list.html.twig' with {'articles': articles} %}
+{% endblock %}
