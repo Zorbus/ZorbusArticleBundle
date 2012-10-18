@@ -673,6 +673,17 @@ class Article
     }
 
     /**
+     * Add categories
+     *
+     * @param Zorbus\ArticleBundle\Entity\Category $categories
+     * @return Article
+     */
+    public function setCategories(\Zorbus\ArticleBundle\Entity\Category $categories)
+    {
+        return $this->addCategorie($categories);
+    }
+
+    /**
      * Remove categories
      *
      * @param Zorbus\ArticleBundle\Entity\Category $categories
@@ -703,6 +714,17 @@ class Article
         $this->tags[] = $tags;
     
         return $this;
+    }
+
+    /**
+     * Add tags
+     *
+     * @param Zorbus\ArticleBundle\Entity\Tag $tags
+     * @return Article
+     */
+    public function setTags(\Zorbus\ArticleBundle\Entity\Tag $tags)
+    {
+        return $this->addTag($tags);
     }
 
     /**
