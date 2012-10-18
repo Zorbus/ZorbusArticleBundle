@@ -678,9 +678,9 @@ class Article
      * @param Zorbus\ArticleBundle\Entity\Category $categories
      * @return Article
      */
-    public function setCategories(\Zorbus\ArticleBundle\Entity\Category $categories)
+    public function setCategories(\Zorbus\ArticleBundle\Entity\Category $categories = null)
     {
-        return $this->addCategorie($categories);
+        return null === $categories ? $this : $this->addCategorie($categories);
     }
 
     /**
@@ -722,9 +722,9 @@ class Article
      * @param Zorbus\ArticleBundle\Entity\Tag $tags
      * @return Article
      */
-    public function setTags(\Zorbus\ArticleBundle\Entity\Tag $tags)
+    public function setTags(\Zorbus\ArticleBundle\Entity\Tag $tags = null)
     {
-        return $this->addTag($tags);
+        return null === $tags ? $this : $this->addTag($tags);
     }
 
     /**
