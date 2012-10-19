@@ -47,13 +47,13 @@ class Article
      * @var string $attachment
      */
     private $attachment;
-    private $attachmentTemp;
+    public $attachmentTemp;
 
     /**
      * @var string $image
      */
     private $image;
-    private $imageTemp;
+    public $imageTemp;
 
     /**
      * @var string $status
