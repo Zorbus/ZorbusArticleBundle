@@ -65,8 +65,7 @@ Zorbus\ArticleBundle\Entity\Article:
             type: datetime
             nullable: true
         date_published:
-            type: boolean
-            default: true
+            type: datetime
             nullable: true
         date_event:
             type: string
@@ -100,6 +99,12 @@ Zorbus\ArticleBundle\Entity\Article:
             gedmo:
                 timestampable:
                     on: update
+    lifecycleCallbacks:
+        prePersist: [preImageUpload, preFileUpload]
+        preUpdate: [preImageUpload, preFileUpload]
+        postPersist: [postImageUpload, postFileUpload]
+        postUpdate: [postImageUpload, postFileUpload]
+        postRemove: [postRemove]
     manyToMany:
         categories:
             targetEntity: Category
