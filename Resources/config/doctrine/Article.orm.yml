@@ -100,10 +100,10 @@ Zorbus\ArticleBundle\Entity\Article:
                 timestampable:
                     on: update
     lifecycleCallbacks:
-        prePersist: [preImageUpload, preFileUpload]
-        preUpdate: [preImageUpload, preFileUpload]
-        postPersist: [postImageUpload, postFileUpload]
-        postUpdate: [postImageUpload, postFileUpload]
+        prePersist: [preImageUpload, preAttachmentUpload]
+        preUpdate: [preImageUpload, preAttachmentUpload]
+        postPersist: [postImageUpload, postAttachmentUpload]
+        postUpdate: [postImageUpload, postAttachmentUpload]
         postRemove: [postRemove]
     manyToMany:
         categories:

@@ -768,7 +768,7 @@ class Article
 
     protected function getUploadRootDir()
     {
-        return __DIR__.'/../../../../../web/'.$this->getUploadDir();
+        return __DIR__.'/../../../../../../web/'.$this->getUploadDir();
     }
 
     protected function getUploadDir()
@@ -789,7 +789,7 @@ class Article
     /**
      * @ORM\PrePersist
      */
-    public function preFileUpload()
+    public function preAttachmentUpload()
     {
         if (null !== $this->attachmentTemp) {
             $this->attachment = sha1(uniqid(mt_rand(), true)).'.'.$this->attachmentTemp->guessExtension();
@@ -826,7 +826,7 @@ class Article
     /**
      * @ORM\PostPersist
      */
-    public function postFileUpload()
+    public function postAttachmentUpload()
     {
         if (null === $this->attachmentTemp) {
             return;
