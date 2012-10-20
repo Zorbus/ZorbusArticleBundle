@@ -3,16 +3,19 @@
 namespace Zorbus\ArticleBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * Zorbus\ArticleBundle\Entity\Article
  */
 class Article
 {
+
     public function __toString()
     {
         return $this->getTitle();
     }
+
     /**
      * @var integer $id
      */
@@ -47,13 +50,13 @@ class Article
      * @var string $attachment
      */
     private $attachment;
-    public $attachmentTemp;
+    public $attachmentTemp = null;
 
     /**
      * @var string $image
      */
     private $image;
-    public $imageTemp;
+    public $imageTemp = null;
 
     /**
      * @var string $status
@@ -753,22 +756,23 @@ class Article
         return $this->tags;
     }
 
-    /***
+    /*     * *
      * custom methods
      */
+
     public function getAbsolutePath($file)
     {
-        return null === $file ? null : $this->getUploadRootDir().'/'.$file;
+        return null === $file ? null : $this->getUploadRootDir() . '/' . $file;
     }
 
     public function getWebPath($file)
     {
-        return null === $file ? null : $this->getUploadDir().'/'.$file;
+        return null === $file ? null : $this->getUploadDir() . '/' . $file;
     }
 
     protected function getUploadRootDir()
     {
-        return __DIR__.'/../../../../../../web/'.$this->getUploadDir();
+        return __DIR__ . '/../../../../../../web/' . $this->getUploadDir();
     }
 
     protected function getUploadDir()
@@ -781,8 +785,9 @@ class Article
      */
     public function preImageUpload()
     {
-        if (null !== $this->imageTemp) {
-            $this->image = sha1(uniqid(mt_rand(), true)).'.'.$this->imageTemp->guessExtension();
+        if (null !== $this->imageTemp)
+        {
+            $this->image = sha1(uniqid(mt_rand(), true)) . '.' . $this->imageTemp->guessExtension();
         }
     }
 
@@ -791,8 +796,9 @@ class Article
      */
     public function preAttachmentUpload()
     {
-        if (null !== $this->attachmentTemp) {
-            $this->attachment = sha1(uniqid(mt_rand(), true)).'.'.$this->attachmentTemp->guessExtension();
+        if (null !== $this->attachmentTemp)
+        {
+            $this->attachment = sha1(uniqid(mt_rand(), true)) . '.' . $this->attachmentTemp->guessExtension();
         }
     }
 
@@ -801,10 +807,12 @@ class Article
      */
     public function postRemove()
     {
-        if ($file = $this->getAbsolutePath($this->image)) {
+        if ($file = $this->getAbsolutePath($this->image))
+        {
             @unlink($file);
         }
-        if ($file = $this->getAbsolutePath($this->attachment)) {
+        if ($file = $this->getAbsolutePath($this->attachment))
+        {
             @unlink($file);
         }
     }
@@ -814,13 +822,12 @@ class Article
      */
     public function postImageUpload()
     {
-        if (null === $this->imageTemp) {
-            return;
+        if ($this->imageTemp instanceof UploadedFile)
+        {
+            $this->imageTemp->move($this->getUploadRootDir(), $this->image);
+
+            unset($this->imageTemp);
         }
-
-        $this->imageTemp->move($this->getUploadRootDir(), $this->image);
-
-        unset($this->imageTemp);
     }
 
     /**
@@ -828,12 +835,12 @@ class Article
      */
     public function postAttachmentUpload()
     {
-        if (null === $this->attachmentTemp) {
-            return;
+        if ($this->attachmentTemp instanceof UploadedFile)
+        {
+            $this->attachmentTemp->move($this->getUploadRootDir(), $this->attachment);
+
+            unset($this->attachmentTemp);
         }
-
-        $this->attachmentTemp->move($this->getUploadRootDir(), $this->attachment);
-
-        unset($this->attachmentTemp);
     }
+
 }
