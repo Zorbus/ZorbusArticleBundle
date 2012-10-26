@@ -17,14 +17,14 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
         $category1->setName('Science');
         $category1->setLang('en_US');
         $category1->setDescription('All the articles related to science.');
-        $category1->setIsEnabled(true);
+        $category1->setEnabled(true);
         $category1->setIsHighlighted(true);
 
         $category2 = new Category();
         $category2->setName('Mathematic');
         $category2->setLang('en_US');
         $category2->setDescription('All the articles related to mathematics.');
-        $category2->setIsEnabled(true);
+        $category2->setEnabled(true);
         $category2->setIsHighlighted(true);
         $category2->setParent($category1);
 
@@ -32,7 +32,7 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
         $category3->setName('Hobbies');
         $category3->setLang('en_US');
         $category3->setDescription('All the articles related to hobbies.');
-        $category3->setIsEnabled(true);
+        $category3->setEnabled(true);
         $category3->setIsHighlighted(true);
 
         $manager->persist($category1);
