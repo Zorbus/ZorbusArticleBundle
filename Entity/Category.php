@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Zorbus\ArticleBundle\Entity\Category
  */
-class Category
+class Category extends Base\Category
 {
     /**
      * @var integer $id
@@ -107,11 +107,11 @@ class Category
         $this->children = new \Doctrine\Common\Collections\ArrayCollection();
         $this->articles = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -127,14 +127,14 @@ class Category
     public function setName($name)
     {
         $this->name = $name;
-    
+
         return $this;
     }
 
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -150,14 +150,14 @@ class Category
     public function setDescription($description)
     {
         $this->description = $description;
-    
+
         return $this;
     }
 
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -173,14 +173,14 @@ class Category
     public function setLang($lang)
     {
         $this->lang = $lang;
-    
+
         return $this;
     }
 
     /**
      * Get lang
      *
-     * @return string 
+     * @return string
      */
     public function getLang()
     {
@@ -196,14 +196,14 @@ class Category
     public function setImage($image)
     {
         $this->image = $image;
-    
+
         return $this;
     }
 
     /**
      * Get image
      *
-     * @return string 
+     * @return string
      */
     public function getImage()
     {
@@ -219,14 +219,14 @@ class Category
     public function setIsHighlighted($isHighlighted)
     {
         $this->is_highlighted = $isHighlighted;
-    
+
         return $this;
     }
 
     /**
      * Get is_highlighted
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getIsHighlighted()
     {
@@ -242,14 +242,14 @@ class Category
     public function setEnabled($enabled)
     {
         $this->enabled = $enabled;
-    
+
         return $this;
     }
 
     /**
      * Get enabled
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getEnabled()
     {
@@ -265,14 +265,14 @@ class Category
     public function setLft($lft)
     {
         $this->lft = $lft;
-    
+
         return $this;
     }
 
     /**
      * Get lft
      *
-     * @return integer 
+     * @return integer
      */
     public function getLft()
     {
@@ -288,14 +288,14 @@ class Category
     public function setRgt($rgt)
     {
         $this->rgt = $rgt;
-    
+
         return $this;
     }
 
     /**
      * Get rgt
      *
-     * @return integer 
+     * @return integer
      */
     public function getRgt()
     {
@@ -311,14 +311,14 @@ class Category
     public function setRoot($root)
     {
         $this->root = $root;
-    
+
         return $this;
     }
 
     /**
      * Get root
      *
-     * @return integer 
+     * @return integer
      */
     public function getRoot()
     {
@@ -334,14 +334,14 @@ class Category
     public function setLvl($lvl)
     {
         $this->lvl = $lvl;
-    
+
         return $this;
     }
 
     /**
      * Get lvl
      *
-     * @return integer 
+     * @return integer
      */
     public function getLvl()
     {
@@ -357,14 +357,14 @@ class Category
     public function setUserId($userId)
     {
         $this->user_id = $userId;
-    
+
         return $this;
     }
 
     /**
      * Get user_id
      *
-     * @return integer 
+     * @return integer
      */
     public function getUserId()
     {
@@ -380,14 +380,14 @@ class Category
     public function setSlug($slug)
     {
         $this->slug = $slug;
-    
+
         return $this;
     }
 
     /**
      * Get slug
      *
-     * @return string 
+     * @return string
      */
     public function getSlug()
     {
@@ -403,14 +403,14 @@ class Category
     public function setCreatedAt($createdAt)
     {
         $this->created_at = $createdAt;
-    
+
         return $this;
     }
 
     /**
      * Get created_at
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -426,14 +426,14 @@ class Category
     public function setUpdatedAt($updatedAt)
     {
         $this->updated_at = $updatedAt;
-    
+
         return $this;
     }
 
     /**
      * Get updated_at
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdatedAt()
     {
@@ -449,7 +449,7 @@ class Category
     public function addChildren(\Zorbus\ArticleBundle\Entity\Category $children)
     {
         $this->children[] = $children;
-    
+
         return $this;
     }
 
@@ -466,7 +466,7 @@ class Category
     /**
      * Get children
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getChildren()
     {
@@ -482,14 +482,14 @@ class Category
     public function setParent(\Zorbus\ArticleBundle\Entity\Category $parent = null)
     {
         $this->parent = $parent;
-    
+
         return $this;
     }
 
     /**
      * Get parent
      *
-     * @return Zorbus\ArticleBundle\Entity\Category 
+     * @return Zorbus\ArticleBundle\Entity\Category
      */
     public function getParent()
     {
@@ -505,7 +505,7 @@ class Category
     public function addArticle(\Zorbus\ArticleBundle\Entity\Article $articles)
     {
         $this->articles[] = $articles;
-    
+
         return $this;
     }
 
@@ -522,7 +522,7 @@ class Category
     /**
      * Get articles
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getArticles()
     {

@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Zorbus\ArticleBundle\Entity\Tag
  */
-class Tag
+class Tag extends Base\Tag
 {
     /**
      * @var integer $id
@@ -41,11 +41,11 @@ class Tag
     {
         $this->articles = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -61,14 +61,14 @@ class Tag
     public function setName($name)
     {
         $this->name = $name;
-    
+
         return $this;
     }
 
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -84,14 +84,14 @@ class Tag
     public function setEnabled($enabled)
     {
         $this->enabled = $enabled;
-    
+
         return $this;
     }
 
     /**
      * Get enabled
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getEnabled()
     {
@@ -107,14 +107,14 @@ class Tag
     public function setSlug($slug)
     {
         $this->slug = $slug;
-    
+
         return $this;
     }
 
     /**
      * Get slug
      *
-     * @return string 
+     * @return string
      */
     public function getSlug()
     {
@@ -130,7 +130,7 @@ class Tag
     public function addArticle(\Zorbus\ArticleBundle\Entity\Article $articles)
     {
         $this->articles[] = $articles;
-    
+
         return $this;
     }
 
@@ -147,7 +147,7 @@ class Tag
     /**
      * Get articles
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getArticles()
     {
