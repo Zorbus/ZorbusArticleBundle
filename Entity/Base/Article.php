@@ -7,8 +7,8 @@ namespace Zorbus\ArticleBundle\Entity\Base;
  */
 abstract class Article
 {
-    protected $imageTemp;
-    protected $attachmentTemp;
+    public $imageTemp;
+    public $attachmentTemp;
 
     public function __toString()
     {
