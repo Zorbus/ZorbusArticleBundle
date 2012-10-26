@@ -8,8 +8,8 @@ namespace Zorbus\ArticleBundle\Entity\Base;
 abstract class Article
 {
     protected $imageTemp;
-    protected $fileTemp;
-    
+    protected $attachmentTemp;
+
     public function __toString()
     {
         return $this->getTitle();
