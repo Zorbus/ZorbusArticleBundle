@@ -21,7 +21,7 @@ Zorbus\ArticleBundle\Entity\Category:
             type: string
             length: 5
             nullable: true
-            default: en
+            default: en_US
         image:
             type: string
             length: 255
@@ -30,7 +30,7 @@ Zorbus\ArticleBundle\Entity\Category:
             type: boolean
             default: false
             nullable: true
-        is_enabled:
+        enabled:
             type: boolean
             default: true
             nullable: true

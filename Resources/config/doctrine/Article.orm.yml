@@ -22,7 +22,7 @@ Zorbus\ArticleBundle\Entity\Article:
             type: string
             length: 5
             nullable: true
-            default: en
+            default: en_US
         type:
             type: string
             length: 255
@@ -54,7 +54,7 @@ Zorbus\ArticleBundle\Entity\Article:
             type: boolean
             default: false
             nullable: true
-        is_enabled:
+        enabled:
             type: boolean
             default: true
             nullable: true

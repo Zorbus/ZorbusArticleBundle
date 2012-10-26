@@ -18,7 +18,7 @@ class LoadArticleData extends AbstractFixture implements OrderedFixtureInterface
         $article1->setSubtitle('A presentation by Euler');
         $article1->setAuthor('Tito Miguel Costa');
         $article1->setBody('<p>You can not miss this event.</p><p>Euler will present us with a magnific insight about the importance of mathematics in our world.</p>');
-        $article1->setIsEnabled(true);
+        $article1->setEnabled(true);
         $article1->setIsHighlighted(true);
         $article1->setType('event');
         $article1->setLang('en_US');
@@ -32,7 +32,7 @@ class LoadArticleData extends AbstractFixture implements OrderedFixtureInterface
         $article2->setSubtitle('');
         $article2->setAuthor('Tito Miguel Costa');
         $article2->setBody('<p>Get to know a few games you can play alone at home and get entertained.</p>');
-        $article2->setIsEnabled(true);
+        $article2->setEnabled(true);
         $article2->setIsHighlighted(false);
         $article2->setType('event');
         $article2->setLang('en_US');
@@ -44,7 +44,7 @@ class LoadArticleData extends AbstractFixture implements OrderedFixtureInterface
         $article3->setSubtitle('Learn chess like a master');
         $article3->setAuthor('Tito Miguel Costa');
         $article3->setBody('<p>Master you chess game.</p><p>Improve you game immediately with our recommendations.</p><p>Impress your friends with new tactics.</p>');
-        $article3->setIsEnabled(true);
+        $article3->setEnabled(true);
         $article3->setIsHighlighted(false);
         $article3->setType('event');
         $article3->setLang('en_US');

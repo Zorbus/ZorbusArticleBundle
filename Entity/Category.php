@@ -9,10 +9,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Category
 {
-    public function __toString()
-    {
-        return $this->getName();
-    }
     /**
      * @var integer $id
      */
@@ -44,9 +40,29 @@ class Category
     private $is_highlighted;
 
     /**
-     * @var boolean $is_enabled
+     * @var boolean $enabled
      */
-    private $is_enabled;
+    private $enabled;
+
+    /**
+     * @var integer $lft
+     */
+    private $lft;
+
+    /**
+     * @var integer $rgt
+     */
+    private $rgt;
+
+    /**
+     * @var integer $root
+     */
+    private $root;
+
+    /**
+     * @var integer $lvl
+     */
+    private $lvl;
 
     /**
      * @var integer $user_id
@@ -71,6 +87,16 @@ class Category
     /**
      * @var \Doctrine\Common\Collections\ArrayCollection
      */
+    private $children;
+
+    /**
+     * @var Zorbus\ArticleBundle\Entity\Category
+     */
+    private $parent;
+
+    /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     */
     private $articles;
 
     /**
@@ -78,6 +104,7 @@ class Category
      */
     public function __construct()
     {
+        $this->children = new \Doctrine\Common\Collections\ArrayCollection();
         $this->articles = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
@@ -207,26 +234,118 @@ class Category
     }
 
     /**
-     * Set is_enabled
+     * Set enabled
      *
-     * @param boolean $isEnabled
+     * @param boolean $enabled
      * @return Category
      */
-    public function setIsEnabled($isEnabled)
+    public function setEnabled($enabled)
     {
-        $this->is_enabled = $isEnabled;
+        $this->enabled = $enabled;
     
         return $this;
     }
 
     /**
-     * Get is_enabled
+     * Get enabled
      *
      * @return boolean 
      */
-    public function getIsEnabled()
+    public function getEnabled()
     {
-        return $this->is_enabled;
+        return $this->enabled;
+    }
+
+    /**
+     * Set lft
+     *
+     * @param integer $lft
+     * @return Category
+     */
+    public function setLft($lft)
+    {
+        $this->lft = $lft;
+    
+        return $this;
+    }
+
+    /**
+     * Get lft
+     *
+     * @return integer 
+     */
+    public function getLft()
+    {
+        return $this->lft;
+    }
+
+    /**
+     * Set rgt
+     *
+     * @param integer $rgt
+     * @return Category
+     */
+    public function setRgt($rgt)
+    {
+        $this->rgt = $rgt;
+    
+        return $this;
+    }
+
+    /**
+     * Get rgt
+     *
+     * @return integer 
+     */
+    public function getRgt()
+    {
+        return $this->rgt;
+    }
+
+    /**
+     * Set root
+     *
+     * @param integer $root
+     * @return Category
+     */
+    public function setRoot($root)
+    {
+        $this->root = $root;
+    
+        return $this;
+    }
+
+    /**
+     * Get root
+     *
+     * @return integer 
+     */
+    public function getRoot()
+    {
+        return $this->root;
+    }
+
+    /**
+     * Set lvl
+     *
+     * @param integer $lvl
+     * @return Category
+     */
+    public function setLvl($lvl)
+    {
+        $this->lvl = $lvl;
+    
+        return $this;
+    }
+
+    /**
+     * Get lvl
+     *
+     * @return integer 
+     */
+    public function getLvl()
+    {
+        return $this->lvl;
     }
 
     /**
@@ -322,161 +441,6 @@ class Category
     }
 
     /**
-     * Add articles
-     *
-     * @param Zorbus\ArticleBundle\Entity\Article $articles
-     * @return Category
-     */
-    public function addArticle(\Zorbus\ArticleBundle\Entity\Article $articles)
-    {
-        $this->articles[] = $articles;
-    
-        return $this;
-    }
-
-    /**
-     * Remove articles
-     *
-     * @param Zorbus\ArticleBundle\Entity\Article $articles
-     */
-    public function removeArticle(\Zorbus\ArticleBundle\Entity\Article $articles)
-    {
-        $this->articles->removeElement($articles);
-    }
-
-    /**
-     * Get articles
-     *
-     * @return Doctrine\Common\Collections\Collection 
-     */
-    public function getArticles()
-    {
-        return $this->articles;
-    }
-    /**
-     * @var integer $lft
-     */
-    private $lft;
-
-    /**
-     * @var integer $rgt
-     */
-    private $rgt;
-
-    /**
-     * @var integer $root
-     */
-    private $root;
-
-    /**
-     * @var integer $lvl
-     */
-    private $lvl;
-
-    /**
-     * @var \Doctrine\Common\Collections\ArrayCollection
-     */
-    private $children;
-
-    /**
-     * @var Zorbus\ArticleBundle\Entity\Category
-     */
-    private $parent;
-
-
-    /**
-     * Set lft
-     *
-     * @param integer $lft
-     * @return Category
-     */
-    public function setLft($lft)
-    {
-        $this->lft = $lft;
-    
-        return $this;
-    }
-
-    /**
-     * Get lft
-     *
-     * @return integer 
-     */
-    public function getLft()
-    {
-        return $this->lft;
-    }
-
-    /**
-     * Set rgt
-     *
-     * @param integer $rgt
-     * @return Category
-     */
-    public function setRgt($rgt)
-    {
-        $this->rgt = $rgt;
-    
-        return $this;
-    }
-
-    /**
-     * Get rgt
-     *
-     * @return integer 
-     */
-    public function getRgt()
-    {
-        return $this->rgt;
-    }
-
-    /**
-     * Set root
-     *
-     * @param integer $root
-     * @return Category
-     */
-    public function setRoot($root)
-    {
-        $this->root = $root;
-    
-        return $this;
-    }
-
-    /**
-     * Get root
-     *
-     * @return integer 
-     */
-    public function getRoot()
-    {
-        return $this->root;
-    }
-
-    /**
-     * Set lvl
-     *
-     * @param integer $lvl
-     * @return Category
-     */
-    public function setLvl($lvl)
-    {
-        $this->lvl = $lvl;
-    
-        return $this;
-    }
-
-    /**
-     * Get lvl
-     *
-     * @return integer 
-     */
-    public function getLvl()
-    {
-        return $this->lvl;
-    }
-
-    /**
      * Add children
      *
      * @param Zorbus\ArticleBundle\Entity\Category $children
@@ -530,5 +494,38 @@ class Category
     public function getParent()
     {
         return $this->parent;
+    }
+
+    /**
+     * Add articles
+     *
+     * @param Zorbus\ArticleBundle\Entity\Article $articles
+     * @return Category
+     */
+    public function addArticle(\Zorbus\ArticleBundle\Entity\Article $articles)
+    {
+        $this->articles[] = $articles;
+    
+        return $this;
+    }
+
+    /**
+     * Remove articles
+     *
+     * @param Zorbus\ArticleBundle\Entity\Article $articles
+     */
+    public function removeArticle(\Zorbus\ArticleBundle\Entity\Article $articles)
+    {
+        $this->articles->removeElement($articles);
+    }
+
+    /**
+     * Get articles
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getArticles()
+    {
+        return $this->articles;
     }
 }

@@ -9,10 +9,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Tag
 {
-    public function __toString()
-    {
-        return $this->getName();
-    }
     /**
      * @var integer $id
      */
@@ -24,9 +20,9 @@ class Tag
     private $name;
 
     /**
-     * @var string $lang
+     * @var boolean $enabled
      */
-    private $lang;
+    private $enabled;
 
     /**
      * @var string $slug
@@ -80,26 +76,26 @@ class Tag
     }
 
     /**
-     * Set lang
+     * Set enabled
      *
-     * @param string $lang
+     * @param boolean $enabled
      * @return Tag
      */
-    public function setLang($lang)
+    public function setEnabled($enabled)
     {
-        $this->lang = $lang;
+        $this->enabled = $enabled;
     
         return $this;
     }
 
     /**
-     * Get lang
+     * Get enabled
      *
-     * @return string 
+     * @return boolean 
      */
-    public function getLang()
+    public function getEnabled()
     {
-        return $this->lang;
+        return $this->enabled;
     }
 
     /**

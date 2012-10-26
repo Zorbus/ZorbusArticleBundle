@@ -11,11 +11,10 @@ Zorbus\ArticleBundle\Entity\Tag:
             type: string
             length: 255
             unique: true
-        lang:
-            type: string
-            length: 5
+        enabled:
+            type: boolean
+            default: true
             nullable: true
-            default: en
         slug:
             type: string
             length: 255
