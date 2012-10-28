@@ -19,6 +19,16 @@ abstract class Article
         return $this->getTitle();
     }
 
+    public function isHighlighted()
+    {
+        return $this->is_highlighted;
+    }
+
+    public function isEnabled()
+    {
+        return $this->enabled;
+    }
+
     public function getImageTemp()
     {
         return $this->imageTemp;
@@ -58,4 +68,5 @@ abstract class Article
     {
         return 'uploads/articles';
     }
+
 }

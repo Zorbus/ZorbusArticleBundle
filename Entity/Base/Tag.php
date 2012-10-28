@@ -11,4 +11,9 @@ abstract class Tag
     {
         return $this->getName();
     }
+
+    public function isEnabled()
+    {
+        return $this->enabled;
+    }
 }
