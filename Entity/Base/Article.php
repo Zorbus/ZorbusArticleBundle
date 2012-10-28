@@ -13,6 +13,8 @@ abstract class Article
 
     protected $imageTemp;
     protected $attachmentTemp;
+    protected $image;
+    protected $attachment;
 
     public function __toString()
     {
