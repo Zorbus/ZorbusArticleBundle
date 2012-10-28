@@ -13,14 +13,4 @@ abstract class Category
         return $this->getName();
     }
 
-    public function isHighlighted()
-    {
-        return $this->is_highlighted;
-    }
-
-    public function isEnabled()
-    {
-        return $this->enabled;
-    }
-
 }
