@@ -1,10 +1,39 @@
 parameters:
     zorbus_article.article.repository.class: Zorbus\ArticleBundle\Entity\ArticleRepository
-    zorbus_article.article.repository: ZorbusArticleBundle:Article
-    zorbus_article.tag.repository: ZorbusArticleBundle:Tag
-    zorbus_article.category.repository: ZorbusArticleBundle:Category
+
+    zorbus_article.article.admin.class: Zorbus\ArticleBundle\Admin\ArticleAdmin
+    zorbus_article.category.admin.class: Zorbus\ArticleBundle\Admin\CategoryAdmin
+    zorbus_article.tag.admin.class: Zorbus\ArticleBundle\Admin\TagAdmin
+
+    zorbus_article.article.entity.class: Zorbus\ArticleBundle\Entity\Article
+    zorbus_article.category.entity.class: Zorbus\ArticleBundle\Entity\Category
+    zorbus_article.tag.entity.class: Zorbus\ArticleBundle\Entity\Tag
+
+    zorbus_article.article.controller.class: ZorbusArticleBundle:Admin\Article
+    zorbus_article.category.controller.class: SonataAdminBundle:CRUD
+    zorbus_article.tag.controller.class: SonataAdminBundle:CRUD
 
 services:
-    zorbus_article_article_repository:
+    zorbus_article.article.repository:
         class: %zorbus_article.article.repository.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    zorbus_article.article.article.admin:
+        class: %zorbus_article.article.admin.class%
+        arguments: [~, %zorbus_article.article.entity.class%, %zorbus_article.article.controller.class%]
+        calls:
+            - [setTranslationDomain, [ArticleBundle]]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Articles, label: Articles }
+    zorbus_article.article.category.admin:
+        class: %zorbus_article.category.admin.class%
+        arguments: [~, Zorbus\ArticleBundle\Entity\Category, %zorbus_article.category.controller.class%]
+        calls:
+            - [setTranslationDomain, [ArticleBundle]]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Articles, label: Categories }
+    zorbus_article.article.tag.admin:
+        class: %zorbus_article.tag.admin.class%
+        arguments: [~, Zorbus\ArticleBundle\Entity\Tag, %zorbus_article.tag.controller.class%]
+        calls:
+            - [setTranslationDomain, [ArticleBundle]]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Articles, label: Tags }
