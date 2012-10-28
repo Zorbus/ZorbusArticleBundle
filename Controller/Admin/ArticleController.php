@@ -1,6 +1,6 @@
 <?php
 
-namespace Zorbus\AdminBundle\Controller\Admin;
+namespace Zorbus\ArticleBundle\Controller\Admin;
 
 use Sonata\AdminBundle\Controller\CRUDController;
 
