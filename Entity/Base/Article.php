@@ -13,8 +13,6 @@ abstract class Article
 
     protected $imageTemp;
     protected $attachmentTemp;
-    protected $image;
-    protected $attachment;
 
     public function __toString()
     {
@@ -60,68 +58,4 @@ abstract class Article
     {
         return 'uploads/articles';
     }
-
-    /**
-     * @ORM\PrePersist
-     */
-    public function preImageUpload()
-    {
-        if (null !== $this->imageTemp)
-        {
-            $this->image = sha1(uniqid(mt_rand(), true)) . '.' . $this->imageTemp->guessExtension();
-        }
-    }
-
-    /**
-     * @ORM\PrePersist
-     */
-    public function preAttachmentUpload()
-    {
-        if (null !== $this->attachmentTemp)
-        {
-            $this->attachment = sha1(uniqid(mt_rand(), true)) . '.' . $this->attachmentTemp->guessExtension();
-        }
-    }
-
-    /**
-     * @ORM\PostRemove
-     */
-    public function postRemove()
-    {
-        if ($file = $this->getAbsolutePath($this->image))
-        {
-            @unlink($file);
-        }
-        if ($file = $this->getAbsolutePath($this->attachment))
-        {
-            @unlink($file);
-        }
-    }
-
-    /**
-     * @ORM\PostPersist
-     */
-    public function postImageUpload()
-    {
-        if ($this->imageTemp instanceof UploadedFile)
-        {
-            $this->imageTemp->move($this->getUploadRootDir(), $this->image);
-
-            unset($this->imageTemp);
-        }
-    }
-
-    /**
-     * @ORM\PostPersist
-     */
-    public function postAttachmentUpload()
-    {
-        if ($this->attachmentTemp instanceof UploadedFile)
-        {
-            $this->attachmentTemp->move($this->getUploadRootDir(), $this->attachment);
-
-            unset($this->attachmentTemp);
-        }
-    }
-
 }
