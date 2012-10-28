@@ -3,7 +3,6 @@
 namespace Zorbus\ArticleBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * Zorbus\ArticleBundle\Entity\Article
@@ -769,7 +768,7 @@ class Article extends Base\Article
      */
     public function postImageUpload()
     {
-        if ($this->imageTemp instanceof UploadedFile)
+        if ($this->imageTemp instanceof \Symfony\Component\HttpFoundation\File\UploadedFile)
         {
             $this->imageTemp->move($this->getUploadRootDir(), $this->image);
 
@@ -782,7 +781,7 @@ class Article extends Base\Article
      */
     public function postAttachmentUpload()
     {
-        if ($this->attachmentTemp instanceof UploadedFile)
+        if ($this->attachmentTemp instanceof \Symfony\Component\HttpFoundation\File\UploadedFile)
         {
             $this->attachmentTemp->move($this->getUploadRootDir(), $this->attachment);
 
