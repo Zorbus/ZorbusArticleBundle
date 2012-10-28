@@ -24,9 +24,19 @@ abstract class Article
         return $this->imageTemp;
     }
 
+    public function setImageTemp($image)
+    {
+        $this->imageTemp = $image;
+    }
+
     public function getAttachmentTemp()
     {
         return $this->attachmentTemp;
+    }
+
+    public function setAttachmentTemp($attachment)
+    {
+        $this->attachmentTemp = $attachment;
     }
 
     public function getAbsolutePath($file)
