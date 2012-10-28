@@ -1,6 +1,6 @@
 <?php
 
-namespace MomZone\AdminBundle\Controller\Admin;
+namespace Zorbus\AdminBundle\Controller\Admin;
 
 use Sonata\AdminBundle\Controller\CRUDController;
 
