@@ -24,7 +24,7 @@ class ArticleAdmin extends Admin
                 ->with('Personal info')
                 ->add('title')
                 ->add('subtitle')
-                ->add('body')
+                ->add('body', 'textarea', array('attr' => array('class' => 'ckeditor')))
                 ->end()
                 ->with('General')
                 ->add('type')

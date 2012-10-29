@@ -16,24 +16,31 @@ parameters:
 services:
     zorbus_article.article.repository:
         class: %zorbus_article.article.repository.class%
-    zorbus_article.article.article.admin:
+    zorbus_article.article.admin:
         class: %zorbus_article.article.admin.class%
         arguments: [~, %zorbus_article.article.entity.class%, %zorbus_article.article.controller.class%]
         calls:
             - [setTranslationDomain, [ArticleBundle]]
         tags:
             - { name: sonata.admin, manager_type: orm, group: Articles, label: Articles }
-    zorbus_article.article.category.admin:
+    zorbus_article.category.admin:
         class: %zorbus_article.category.admin.class%
         arguments: [~, Zorbus\ArticleBundle\Entity\Category, %zorbus_article.category.controller.class%]
         calls:
             - [setTranslationDomain, [ArticleBundle]]
         tags:
             - { name: sonata.admin, manager_type: orm, group: Articles, label: Categories }
-    zorbus_article.article.tag.admin:
+    zorbus_article.tag.admin:
         class: %zorbus_article.tag.admin.class%
         arguments: [~, Zorbus\ArticleBundle\Entity\Tag, %zorbus_article.tag.controller.class%]
         calls:
             - [setTranslationDomain, [ArticleBundle]]
         tags:
             - { name: sonata.admin, manager_type: orm, group: Articles, label: Tags }
+    # blocks
+    zorbus_article.block.categories:
+        class: Zorbus\ArticleBundle\Block\BlockCategoryConfig
+        scope: prototype
+        arguments: ['@zorbus_article.article.admin', '@templating', '@form.factory']
+        tags:
+            - { name: zorbus_block.block, category: Article }
