@@ -789,4 +789,32 @@ class Article extends Base\Article
         }
     }
 
+    /**
+     * @var string $resume
+     */
+    private $resume;
+
+
+    /**
+     * Set resume
+     *
+     * @param string $resume
+     * @return Article
+     */
+    public function setResume($resume)
+    {
+        $this->resume = $resume;
+    
+        return $this;
+    }
+
+    /**
+     * Get resume
+     *
+     * @return string 
+     */
+    public function getResume()
+    {
+        return $this->resume;
+    }
 }

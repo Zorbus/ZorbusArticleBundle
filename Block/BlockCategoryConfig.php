@@ -21,10 +21,9 @@ class BlockCategoryConfig extends BlockConfig
         $this->template = $template;
     }
 
-    public function getFormBuilder()
+    public function getFormMapper()
     {
-        $formMapper = new FormMapper($this->admin->getFormContractor(), $this->formBuilder, $this->admin);
-        $formMapper
+        return $this->formMapper
                 ->add('title', 'text', array('constraints' => array(
                         new Assert\NotBlank()
                         )))
@@ -35,8 +34,6 @@ class BlockCategoryConfig extends BlockConfig
                 ->add('lang', 'text')
                 ->add('name', 'text')
                 ->add('enabled', 'checkbox', array('required' => false));
-
-        return $formMapper->getFormBuilder();
     }
 
     public function getBlockEntity(array $data, BlockEntity $block = null)

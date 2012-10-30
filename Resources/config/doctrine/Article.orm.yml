@@ -15,6 +15,9 @@ Zorbus\ArticleBundle\Entity\Article:
             type: string
             length: 255
             nullable: true
+        resume:
+            type: text
+            nullable: true
         body:
             type: text
             nullable: false

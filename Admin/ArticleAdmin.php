@@ -21,24 +21,47 @@ class ArticleAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-                ->with('Personal info')
+                ->with('Identification')
                 ->add('title')
                 ->add('subtitle')
-                ->add('body', 'textarea', array('attr' => array('class' => 'ckeditor')))
+                ->add('resume', 'textarea', array('required' => false, 'attr' => array('class' => 'ckeditor')))
+                ->add('body', 'textarea', array('required' => false, 'attr' => array('class' => 'ckeditor')))
                 ->end()
-                ->with('General')
+                ->with('Configuration', array('collapsed' => false))
                 ->add('type')
                 ->add('attachmentTemp', 'file', array('required' => false, 'label' => 'Attachment'))
                 ->add('imageTemp', 'file', array('required' => false, 'label' => 'Image'))
-                ->add('status')
+                ->add('status', 'choice', array(
+                    'choices' => array(
+                        'draft' => 'Draft',
+                        'published' => 'Published',
+                        'archived' => 'Archived'
+                    )
+                ))
                 ->add('is_highlighted')
+                ->add('enabled', null, array('required' => false))
+                ->end()
+                ->with('Dates', array('collapsed' => true))
                 ->add('date_show')
                 ->add('date_hide')
                 ->add('date_published')
                 ->add('date_event')
-                ->add('categories', null, array('expanded' => true, 'required' => false))
-                ->add('tags', null, array('expanded' => true, 'required' => false))
-                ->add('enabled', null, array('required' => false))
+                ->end()
+                ->with('Classification', array('collapsed' => true))
+                ->add('categories', 'entity', array(
+                    'class' => 'Zorbus\\ArticleBundle\\Entity\\Category',
+                    'multiple' => true,
+                    'expanded' => false,
+                    'required' => false,
+                    'attr' => array('class' => 'select2 span5')
+                ))
+                ->add('tags', 'entity', array(
+                    'class' => 'Zorbus\\ArticleBundle\\Entity\\Tag',
+                    'multiple' => true,
+                    'expanded' => false,
+                    'required' => false,
+                    'attr' => array('class' => 'select2 span5')
+                ))
                 ->end()
         ;
     }
@@ -67,11 +90,15 @@ class ArticleAdmin extends Admin
     {
         $filter
                 ->add('title')
+                ->add('subtitle')
+                ->add('resume')
+                ->add('body')
                 ->add('type')
                 ->add('status')
                 ->add('categories')
                 ->add('tags')
                 ->add('date_published')
+                ->add('is_highlighted')
                 ->add('enabled')
         ;
     }
@@ -80,6 +107,7 @@ class ArticleAdmin extends Admin
     {
         $errorElement
                 ->with('title')
+                ->assertNotBlank()
                 ->assertMaxLength(array('limit' => 255))
                 ->end()
         ;
@@ -89,8 +117,10 @@ class ArticleAdmin extends Admin
     {
         $object->setUpdatedAt(new \DateTime());
     }
+
     public function preUpdate($object)
     {
         $object->setUpdatedAt(new \DateTime());
     }
+
 }

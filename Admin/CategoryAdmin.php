@@ -14,7 +14,11 @@ class CategoryAdmin extends Admin
         $formMapper
             ->add('name')
             ->add('enabled')
-            ->add('parent', null, array('empty_value' => '', 'required' => false))
+            ->add('parent', null, array(
+                'empty_value' => '',
+                'required' => false,
+                'attr' => array('class' => 'span5 select2')
+                ))
         ;
     }
 
