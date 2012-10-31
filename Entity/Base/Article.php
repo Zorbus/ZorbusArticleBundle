@@ -56,7 +56,7 @@ abstract class Article
 
     protected function getUploadDir()
     {
-        return 'uploads/articles';
+        return 'uploads/article';
     }
 
 }

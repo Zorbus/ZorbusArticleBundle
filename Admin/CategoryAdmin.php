@@ -6,6 +6,7 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Validator\ErrorElement;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Show\ShowMapper;
 
 class CategoryAdmin extends Admin
 {
@@ -13,6 +14,7 @@ class CategoryAdmin extends Admin
     {
         $formMapper
             ->add('name')
+            ->add('imageTemp', 'file', array('required' => false, 'label' => 'Image'))
             ->add('enabled')
             ->add('parent', null, array(
                 'empty_value' => '',
@@ -39,10 +41,21 @@ class CategoryAdmin extends Admin
         ;
     }
 
+    public function configureShowFields(ShowMapper $filter)
+    {
+        $filter
+                ->add('name')
+                ->add('parent')
+                ->add('image')
+                ->add('enabled')
+        ;
+    }
+
     public function validate(ErrorElement $errorElement, $object)
     {
         $errorElement
             ->with('name')
+                ->assertNotBlank()
                 ->assertMaxLength(array('limit' => 255))
             ->end()
         ;

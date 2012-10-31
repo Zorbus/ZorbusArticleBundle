@@ -528,4 +528,38 @@ class Category extends Base\Category
     {
         return $this->articles;
     }
+    /**
+     * @ORM\PrePersist
+     */
+    public function preImageUpload()
+    {
+        if (null !== $this->imageTemp)
+        {
+            $this->image = sha1(uniqid(mt_rand(), true)) . '.' . $this->imageTemp->guessExtension();
+        }
+    }
+
+    /**
+     * @ORM\PostRemove
+     */
+    public function postRemove()
+    {
+        if ($file = $this->getAbsolutePath($this->image))
+        {
+            @unlink($file);
+        }
+    }
+
+    /**
+     * @ORM\PostPersist
+     */
+    public function postImageUpload()
+    {
+        if ($this->imageTemp instanceof \Symfony\Component\HttpFoundation\File\UploadedFile)
+        {
+            $this->imageTemp->move($this->getUploadRootDir(), $this->image);
+
+            unset($this->imageTemp);
+        }
+    }
 }

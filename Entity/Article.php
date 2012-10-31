@@ -135,6 +135,12 @@ class Article extends Base\Article
      */
     private $tags;
 
+
+    /**
+     * @var string $resume
+     */
+    private $resume;
+
     /**
      * Constructor
      */
@@ -727,6 +733,29 @@ class Article extends Base\Article
     }
 
     /**
+     * Set resume
+     *
+     * @param string $resume
+     * @return Article
+     */
+    public function setResume($resume)
+    {
+        $this->resume = $resume;
+
+        return $this;
+    }
+
+    /**
+     * Get resume
+     *
+     * @return string
+     */
+    public function getResume()
+    {
+        return $this->resume;
+    }
+
+    /**
      * @ORM\PrePersist
      */
     public function preImageUpload()
@@ -787,34 +816,5 @@ class Article extends Base\Article
 
             unset($this->attachmentTemp);
         }
-    }
-
-    /**
-     * @var string $resume
-     */
-    private $resume;
-
-
-    /**
-     * Set resume
-     *
-     * @param string $resume
-     * @return Article
-     */
-    public function setResume($resume)
-    {
-        $this->resume = $resume;
-    
-        return $this;
-    }
-
-    /**
-     * Get resume
-     *
-     * @return string 
-     */
-    public function getResume()
-    {
-        return $this->resume;
     }
 }

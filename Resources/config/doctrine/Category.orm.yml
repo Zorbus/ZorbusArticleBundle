@@ -76,6 +76,12 @@ Zorbus\ArticleBundle\Entity\Category:
             gedmo:
                 timestampable:
                     on: update
+    lifecycleCallbacks:
+        prePersist: [preImageUpload]
+        preUpdate: [preImageUpload]
+        postPersist: [postImageUpload]
+        postUpdate: [postImageUpload]
+        postRemove: [postRemove]
     manyToOne:
         parent:
             targetEntity: Zorbus\ArticleBundle\Entity\Category
