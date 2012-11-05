@@ -60,4 +60,13 @@ class CategoryAdmin extends Admin
             ->end()
         ;
     }
+    public function prePersist($object)
+    {
+        $object->setUpdatedAt(new \DateTime());
+    }
+
+    public function preUpdate($object)
+    {
+        $object->setUpdatedAt(new \DateTime());
+    }
 }
