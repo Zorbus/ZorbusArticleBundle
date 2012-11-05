@@ -1,5 +1,5 @@
 Zorbus\ArticleBundle\Entity\Article:
-    type: entity
+    type: mappedSuperclass
     table: zorbus_article_article
     repositoryClass: Zorbus\ArticleBundle\Entity\ArticleRepository
     id:
