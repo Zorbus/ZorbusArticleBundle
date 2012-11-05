@@ -9,68 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Article extends Base\Article
 {
-    /**
-     * @ORM\PrePersist
-     */
-    public function preImageUpload()
-    {
-        if (null !== $this->imageTemp)
-        {
-            $this->image = sha1(uniqid(mt_rand(), true)) . '.' . $this->imageTemp->guessExtension();
-        }
-    }
 
-    /**
-     * @ORM\PrePersist
-     */
-    public function preAttachmentUpload()
-    {
-        if (null !== $this->attachmentTemp)
-        {
-            $this->attachment = sha1(uniqid(mt_rand(), true)) . '.' . $this->attachmentTemp->guessExtension();
-        }
-    }
-
-    /**
-     * @ORM\PostRemove
-     */
-    public function postRemove()
-    {
-        if ($file = $this->getAbsolutePath($this->image))
-        {
-            @unlink($file);
-        }
-        if ($file = $this->getAbsolutePath($this->attachment))
-        {
-            @unlink($file);
-        }
-    }
-
-    /**
-     * @ORM\PostPersist
-     */
-    public function postImageUpload()
-    {
-        if ($this->imageTemp instanceof \Symfony\Component\HttpFoundation\File\UploadedFile)
-        {
-            $this->imageTemp->move($this->getUploadRootDir(), $this->image);
-
-            unset($this->imageTemp);
-        }
-    }
-
-    /**
-     * @ORM\PostPersist
-     */
-    public function postAttachmentUpload()
-    {
-        if ($this->attachmentTemp instanceof \Symfony\Component\HttpFoundation\File\UploadedFile)
-        {
-            $this->attachmentTemp->move($this->getUploadRootDir(), $this->attachment);
-
-            unset($this->attachmentTemp);
-        }
-    }
     /**
      * @var integer $id
      */
@@ -209,11 +148,11 @@ class Article extends Base\Article
         $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
         $this->tags = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -229,14 +168,14 @@ class Article extends Base\Article
     public function setTitle($title)
     {
         $this->title = $title;
-    
+
         return $this;
     }
 
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -252,14 +191,14 @@ class Article extends Base\Article
     public function setSubtitle($subtitle)
     {
         $this->subtitle = $subtitle;
-    
+
         return $this;
     }
 
     /**
      * Get subtitle
      *
-     * @return string 
+     * @return string
      */
     public function getSubtitle()
     {
@@ -275,14 +214,14 @@ class Article extends Base\Article
     public function setResume($resume)
     {
         $this->resume = $resume;
-    
+
         return $this;
     }
 
     /**
      * Get resume
      *
-     * @return string 
+     * @return string
      */
     public function getResume()
     {
@@ -298,14 +237,14 @@ class Article extends Base\Article
     public function setBody($body)
     {
         $this->body = $body;
-    
+
         return $this;
     }
 
     /**
      * Get body
      *
-     * @return string 
+     * @return string
      */
     public function getBody()
     {
@@ -321,14 +260,14 @@ class Article extends Base\Article
     public function setLang($lang)
     {
         $this->lang = $lang;
-    
+
         return $this;
     }
 
     /**
      * Get lang
      *
-     * @return string 
+     * @return string
      */
     public function getLang()
     {
@@ -344,14 +283,14 @@ class Article extends Base\Article
     public function setType($type)
     {
         $this->type = $type;
-    
+
         return $this;
     }
 
     /**
      * Get type
      *
-     * @return string 
+     * @return string
      */
     public function getType()
     {
@@ -367,14 +306,14 @@ class Article extends Base\Article
     public function setAttachment($attachment)
     {
         $this->attachment = $attachment;
-    
+
         return $this;
     }
 
     /**
      * Get attachment
      *
-     * @return string 
+     * @return string
      */
     public function getAttachment()
     {
@@ -390,14 +329,14 @@ class Article extends Base\Article
     public function setImage($image)
     {
         $this->image = $image;
-    
+
         return $this;
     }
 
     /**
      * Get image
      *
-     * @return string 
+     * @return string
      */
     public function getImage()
     {
@@ -413,14 +352,14 @@ class Article extends Base\Article
     public function setStatus($status)
     {
         $this->status = $status;
-    
+
         return $this;
     }
 
     /**
      * Get status
      *
-     * @return string 
+     * @return string
      */
     public function getStatus()
     {
@@ -436,14 +375,14 @@ class Article extends Base\Article
     public function setAuthor($author)
     {
         $this->author = $author;
-    
+
         return $this;
     }
 
     /**
      * Get author
      *
-     * @return string 
+     * @return string
      */
     public function getAuthor()
     {
@@ -459,14 +398,14 @@ class Article extends Base\Article
     public function setSource($source)
     {
         $this->source = $source;
-    
+
         return $this;
     }
 
     /**
      * Get source
      *
-     * @return string 
+     * @return string
      */
     public function getSource()
     {
@@ -482,14 +421,14 @@ class Article extends Base\Article
     public function setLocal($local)
     {
         $this->local = $local;
-    
+
         return $this;
     }
 
     /**
      * Get local
      *
-     * @return string 
+     * @return string
      */
     public function getLocal()
     {
@@ -505,14 +444,14 @@ class Article extends Base\Article
     public function setIsHighlighted($isHighlighted)
     {
         $this->is_highlighted = $isHighlighted;
-    
+
         return $this;
     }
 
     /**
      * Get is_highlighted
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getIsHighlighted()
     {
@@ -528,14 +467,14 @@ class Article extends Base\Article
     public function setEnabled($enabled)
     {
         $this->enabled = $enabled;
-    
+
         return $this;
     }
 
     /**
      * Get enabled
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getEnabled()
     {
@@ -551,14 +490,14 @@ class Article extends Base\Article
     public function setDateShow($dateShow)
     {
         $this->date_show = $dateShow;
-    
+
         return $this;
     }
 
     /**
      * Get date_show
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateShow()
     {
@@ -574,14 +513,14 @@ class Article extends Base\Article
     public function setDateHide($dateHide)
     {
         $this->date_hide = $dateHide;
-    
+
         return $this;
     }
 
     /**
      * Get date_hide
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateHide()
     {
@@ -597,14 +536,14 @@ class Article extends Base\Article
     public function setDatePublished($datePublished)
     {
         $this->date_published = $datePublished;
-    
+
         return $this;
     }
 
     /**
      * Get date_published
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDatePublished()
     {
@@ -620,14 +559,14 @@ class Article extends Base\Article
     public function setDateEvent($dateEvent)
     {
         $this->date_event = $dateEvent;
-    
+
         return $this;
     }
 
     /**
      * Get date_event
      *
-     * @return string 
+     * @return string
      */
     public function getDateEvent()
     {
@@ -643,14 +582,14 @@ class Article extends Base\Article
     public function setUserId($userId)
     {
         $this->user_id = $userId;
-    
+
         return $this;
     }
 
     /**
      * Get user_id
      *
-     * @return integer 
+     * @return integer
      */
     public function getUserId()
     {
@@ -666,14 +605,14 @@ class Article extends Base\Article
     public function setObservations($observations)
     {
         $this->observations = $observations;
-    
+
         return $this;
     }
 
     /**
      * Get observations
      *
-     * @return string 
+     * @return string
      */
     public function getObservations()
     {
@@ -689,14 +628,14 @@ class Article extends Base\Article
     public function setSlug($slug)
     {
         $this->slug = $slug;
-    
+
         return $this;
     }
 
     /**
      * Get slug
      *
-     * @return string 
+     * @return string
      */
     public function getSlug()
     {
@@ -712,14 +651,14 @@ class Article extends Base\Article
     public function setCreatedAt($createdAt)
     {
         $this->created_at = $createdAt;
-    
+
         return $this;
     }
 
     /**
      * Get created_at
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -735,14 +674,14 @@ class Article extends Base\Article
     public function setUpdatedAt($updatedAt)
     {
         $this->updated_at = $updatedAt;
-    
+
         return $this;
     }
 
     /**
      * Get updated_at
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdatedAt()
     {
@@ -758,7 +697,7 @@ class Article extends Base\Article
     public function addCategorie(\Zorbus\ArticleBundle\Entity\Category $categories)
     {
         $this->categories[] = $categories;
-    
+
         return $this;
     }
 
@@ -775,7 +714,7 @@ class Article extends Base\Article
     /**
      * Get categories
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getCategories()
     {
@@ -791,7 +730,7 @@ class Article extends Base\Article
     public function addTag(\Zorbus\ArticleBundle\Entity\Tag $tags)
     {
         $this->tags[] = $tags;
-    
+
         return $this;
     }
 
@@ -808,10 +747,74 @@ class Article extends Base\Article
     /**
      * Get tags
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getTags()
     {
         return $this->tags;
     }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function preImageUpload()
+    {
+        if (null !== $this->imageTemp)
+        {
+            $this->image = sha1(uniqid(mt_rand(), true)) . '.' . $this->imageTemp->guessExtension();
+        }
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function preAttachmentUpload()
+    {
+        if (null !== $this->attachmentTemp)
+        {
+            $this->attachment = sha1(uniqid(mt_rand(), true)) . '.' . $this->attachmentTemp->guessExtension();
+        }
+    }
+
+    /**
+     * @ORM\PostRemove
+     */
+    public function postRemove()
+    {
+        if ($file = $this->getAbsolutePath($this->image))
+        {
+            @unlink($file);
+        }
+        if ($file = $this->getAbsolutePath($this->attachment))
+        {
+            @unlink($file);
+        }
+    }
+
+    /**
+     * @ORM\PostPersist
+     */
+    public function postImageUpload()
+    {
+        if ($this->imageTemp instanceof \Symfony\Component\HttpFoundation\File\UploadedFile)
+        {
+            $this->imageTemp->move($this->getUploadRootDir(), $this->image);
+
+            unset($this->imageTemp);
+        }
+    }
+
+    /**
+     * @ORM\PostPersist
+     */
+    public function postAttachmentUpload()
+    {
+        if ($this->attachmentTemp instanceof \Symfony\Component\HttpFoundation\File\UploadedFile)
+        {
+            $this->attachmentTemp->move($this->getUploadRootDir(), $this->attachment);
+
+            unset($this->attachmentTemp);
+        }
+    }
+
 }
