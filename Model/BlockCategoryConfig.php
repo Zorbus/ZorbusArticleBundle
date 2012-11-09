@@ -14,9 +14,6 @@ class BlockCategoryConfig extends BlockConfig
     {
         parent::__construct('zorbus_block.service.article.category', 'Category Block', $admin, $formFactory);
         $this->enabled = true;
-        $this->themes = array(
-            'ZorbusArticleBundle:Block:category' => 'Default template',
-            );
         $this->httpKernel = $httpKernel;
     }
 

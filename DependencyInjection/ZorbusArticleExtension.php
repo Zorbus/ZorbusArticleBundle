@@ -22,7 +22,21 @@ class ZorbusArticleExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
+        $container->setParameter('zorbus_article.article.themes', $this->getThemes($config['article']['themes']));
+        $container->setParameter('zorbus_article.category.themes', $this->getThemes($config['category']['themes']));
+
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
+    }
+    protected function getThemes(array $themes)
+    {
+        $t = array();
+
+        foreach ($themes as $controller => $name)
+        {
+            $t[$controller] = $name['name'];
+        }
+
+        return $t;
     }
 }

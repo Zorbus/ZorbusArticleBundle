@@ -20,9 +20,42 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('zorbus_article');
 
-        // Here you should define the parameters that are allowed to
-        // configure your bundle. See the documentation linked above for
-        // more information on that topic.
+        $rootNode
+            ->children()
+                ->arrayNode('article')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->arrayNode('themes')
+                            ->defaultValue(array(
+                                    'ZorbusArticleBundle:Block:article' => array('name' => 'Default')
+                                ))
+                            ->useAttributeAsKey('controller')
+                            ->prototype('array')
+                                ->children()
+                                    ->scalarNode('name')->isRequired()->end()
+                                ->end()
+                            ->end()
+                        ->end()
+                    ->end()
+                ->end()
+                ->arrayNode('category')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->arrayNode('themes')
+                            ->defaultValue(array(
+                                    'ZorbusArticleBundle:Block:category' => array('name' => 'Default')
+                                ))
+                            ->useAttributeAsKey('controller')
+                            ->prototype('array')
+                                ->children()
+                                    ->scalarNode('name')->isRequired()->end()
+                                ->end()
+                            ->end()
+                        ->end()
+                    ->end()
+                ->end()
+            ->end()
+        ;
 
         return $treeBuilder;
     }

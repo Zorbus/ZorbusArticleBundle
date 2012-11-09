@@ -14,9 +14,6 @@ class BlockArticleConfig extends BlockConfig
     {
         parent::__construct('zorbus_block.service.article', 'Article Block', $admin, $formFactory);
         $this->enabled = true;
-        $this->themes = array(
-            'ZorbusArticleBundle:Block:article' => 'Default template',
-            );
         $this->httpKernel = $httpKernel;
     }
 
