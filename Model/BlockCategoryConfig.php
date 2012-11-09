@@ -1,6 +1,6 @@
 <?php
 
-namespace MomZone\BlockBundle\Model\Block\Article;
+namespace Zorbus\ArticleBundle\Model;
 
 use Zorbus\BlockBundle\Entity\Block as BlockEntity;
 use Sonata\AdminBundle\Admin\AdminInterface;
