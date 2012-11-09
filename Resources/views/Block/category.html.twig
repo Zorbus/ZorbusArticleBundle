@@ -1,0 +1,11 @@
+<div class="row-fluid">
+    <h1>{{ category.name }}</h1>
+
+    <ul>
+    {% for article in category.articles %}
+        <li>{{ article.title }}: {{ article.datePublished | date('Y-m-d') }}</li>
+    {% else %}
+        <li>No articles in this category.</li>
+    {% endfor %}
+    </ul>
+</div>

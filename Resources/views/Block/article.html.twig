@@ -1,0 +1,27 @@
+<div class="row-fluid">
+    <h1>{{ article.title }}</h1>
+    {% if article.subtitle|length > 0 %}
+        <h2>{{ article.subtitle }}</h2>
+    {% endif %}
+
+    <div class="row"><strong>{{ article.resume | raw }}</strong></div>
+
+    {{ article.body | raw }}
+
+    <div class="row">
+        <span></span>
+        <span class="well span4">
+        {% for category in article.categories %}
+            <span class="badge badge-info">{{ category.name }}</span>
+        {% endfor %}
+        </span>
+
+        <span class="well span4">
+        {% for tag in article.tags %}
+            <span class="label label-info">{{ tag.name }}</span>
+        {% endfor %}
+        </span>
+    </div>
+
+    <p><small>{{ article.datePublished | date('Y-m-d') }}</small></p>
+</div>
