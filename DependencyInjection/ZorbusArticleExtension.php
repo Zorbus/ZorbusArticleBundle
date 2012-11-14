@@ -27,6 +27,18 @@ class ZorbusArticleExtension extends Extension
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
+
+        $container->setParameter('zorbus_article.article.admin.class', $config['article']['admin']['class']);
+        $container->setParameter('zorbus_article.category.admin.class', $config['article']['admin']['class']);
+        $container->setParameter('zorbus_article.tag.admin.class', $config['article']['admin']['class']);
+
+        $container->setParameter('zorbus_article.article.entity.class', $config['article']['admin']['entity']);
+        $container->setParameter('zorbus_article.category.entity.class', $config['category']['admin']['entity']);
+        $container->setParameter('zorbus_article.tag.entity.class', $config['tag']['admin']['entity']);
+
+        $container->setParameter('zorbus_article.article.controller.class', $config['article']['admin']['controller']);
+        $container->setParameter('zorbus_article.category.controller.class', $config['category']['admin']['controller']);
+        $container->setParameter('zorbus_article.tag.controller.class', $config['tag']['admin']['controller']);
     }
     protected function getThemes(array $themes)
     {
