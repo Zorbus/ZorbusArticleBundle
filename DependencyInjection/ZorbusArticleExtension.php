@@ -29,8 +29,8 @@ class ZorbusArticleExtension extends Extension
         $loader->load('services.yml');
 
         $container->setParameter('zorbus_article.article.admin.class', $config['article']['admin']['class']);
-        $container->setParameter('zorbus_article.category.admin.class', $config['article']['admin']['class']);
-        $container->setParameter('zorbus_article.tag.admin.class', $config['article']['admin']['class']);
+        $container->setParameter('zorbus_article.category.admin.class', $config['category']['admin']['class']);
+        $container->setParameter('zorbus_article.tag.admin.class', $config['tag']['admin']['class']);
 
         $container->setParameter('zorbus_article.article.entity.class', $config['article']['admin']['entity']);
         $container->setParameter('zorbus_article.category.entity.class', $config['category']['admin']['entity']);
