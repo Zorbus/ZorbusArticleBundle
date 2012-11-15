@@ -12,7 +12,7 @@ class BlockArticleConfig extends BlockConfig
 
     public function __construct(AdminInterface $admin, FormFactory $formFactory, $httpKernel)
     {
-        parent::__construct('zorbus_block.service.article', 'Article Block', $admin, $formFactory);
+        parent::__construct('zorbus_article.block.article', 'Article Block', $admin, $formFactory);
         $this->enabled = true;
         $this->httpKernel = $httpKernel;
     }

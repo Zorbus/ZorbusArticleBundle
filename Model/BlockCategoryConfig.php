@@ -12,7 +12,7 @@ class BlockCategoryConfig extends BlockConfig
 
     public function __construct(AdminInterface $admin, FormFactory $formFactory, $httpKernel)
     {
-        parent::__construct('zorbus_block.service.article.category', 'Category Block', $admin, $formFactory);
+        parent::__construct('zorbus_article.block.category', 'Category Block', $admin, $formFactory);
         $this->enabled = true;
         $this->httpKernel = $httpKernel;
     }

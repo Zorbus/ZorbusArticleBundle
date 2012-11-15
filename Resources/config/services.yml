@@ -11,8 +11,8 @@ parameters:
     zorbus_article.category.controller.class: SonataAdminBundle:CRUD
     zorbus_article.tag.controller.class: SonataAdminBundle:CRUD
 
-    zorbus_block.service.article.class: Zorbus\ArticleBundle\Model\BlockArticleConfig
-    zorbus_block.service.article.category.class: Zorbus\ArticleBundle\Model\BlockCategoryConfig
+    zorbus_article.block.article.class: Zorbus\ArticleBundle\Model\BlockArticleConfig
+    zorbus_article.block.category.class: Zorbus\ArticleBundle\Model\BlockCategoryConfig
 
 services:
     zorbus_article.article.admin:
@@ -36,16 +36,16 @@ services:
             - [setTranslationDomain, [ArticleBundle]]
         tags:
             - { name: sonata.admin, manager_type: orm, group: Articles, label: Tags }
-    zorbus_block.service.article:
-        class: %zorbus_block.service.article.class%
+    zorbus_article.block.article:
+        class: %zorbus_article.block.article.class%
         scope: prototype
         arguments: ['@zorbus_block.block.admin', '@form.factory', '@http_kernel']
         calls:
           - [addThemes, [%zorbus_article.article.themes%]]
         tags:
             - { name: zorbus_block.block, category: Articles }
-    zorbus_block.service.article.category:
-        class: %zorbus_block.service.article.category.class%
+    zorbus_article.block.category:
+        class: %zorbus_article.block.category.class%
         scope: prototype
         arguments: ['@zorbus_block.block.admin', '@form.factory', '@http_kernel']
         calls:
