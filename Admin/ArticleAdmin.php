@@ -111,8 +111,8 @@ class ArticleAdmin extends Admin
     {
         $listMapper
                 ->addIdentifier('title')
-                ->add('type')
-                ->add('status')
+                ->add('type', 'trans', array('catalogue' => 'ZorbusArticleBundle'))
+                ->add('status', 'trans', array('catalogue' => 'ZorbusArticleBundle'))
                 ->add('enabled')
         ;
     }
@@ -127,7 +127,7 @@ class ArticleAdmin extends Admin
                 ->add('body', 'text', array('safe' => true))
             ->end()
             ->with('Configuration')
-                ->add('type')
+                ->add('type', 'trans', array('catalogue' => 'ZorbusArticleBundle'))
                 ->add('status', 'trans', array(
                     'catalogue' => 'ZorbusArticleBundle'
                 ))

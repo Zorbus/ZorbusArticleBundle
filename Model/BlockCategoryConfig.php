@@ -6,6 +6,9 @@ use Zorbus\BlockBundle\Entity\Block as BlockEntity;
 use Sonata\AdminBundle\Admin\AdminInterface;
 use Symfony\Component\Form\FormFactory;
 use Zorbus\BlockBundle\Model\BlockConfig;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Type;
+use Symfony\Component\Validator\Constraints\Min;
 
 class BlockCategoryConfig extends BlockConfig
 {
@@ -21,18 +24,29 @@ class BlockCategoryConfig extends BlockConfig
     {
         return $this->formMapper
                         ->add('category', 'entity', array(
-                            'class' => 'Zorbus\\ArticleBundle\\Entity\\Category',
-                            'attr' => array('class' => 'span5 select2')
+                            'class' => 'Zorbus\ArticleBundle\Entity\Category',
+                            'attr' => array('class' => 'span5 select2'),
+                            'constraints' => array(
+                                new NotBlank(),
+                                new Type(array(
+                                    'type' => 'Zorbus\ArticleBundle\Entity\Category'
+                                ))
+                            )
                         ))
-                        ->add('name', 'text')
-                        ->add('lang', 'text', array('required' => false))
+                        ->add('name', 'text', array(
+                            'constraints' => array(
+                                new NotBlank()
+                            )
+                        ))
+                        ->add('lang', 'language', array('preferred_choices' => array('pt_PT', 'en')))
                         ->add('theme', 'choice', array(
                             'choices' => $this->getThemes(),
                             'attr' => array('class' => 'span5 select2')
                         ))
                         ->add('cache_ttl', 'integer', array(
                             'required' => false,
-                            'attr' => array('class' => 'span2')
+                            'attr' => array('class' => 'span2'),
+                            'constraints' => new Min(array('limit' => 0))
                         ))
                         ->add('enabled', 'checkbox', array('required' => false))
         ;
