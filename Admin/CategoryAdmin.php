@@ -4,23 +4,36 @@ namespace Zorbus\ArticleBundle\Admin;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
-use Sonata\AdminBundle\Validator\ErrorElement;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\MaxLength;
+use Symfony\Component\Validator\Constraints\Image;
 
 class CategoryAdmin extends Admin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('name')
-            ->add('imageTemp', 'file', array('required' => false, 'label' => 'Image'))
+            ->add('name', null, array(
+                'constraints' => array(
+                    new NotBlank(),
+                    new MaxLength(array('limit' => 255))
+                )
+            ))
+            ->add('imageTemp', 'file', array(
+                'required' => false,
+                'label' => 'Image',
+                'constraints' => array(
+                    new Image()
+                )
+             ))
             ->add('enabled')
             ->add('parent', null, array(
                 'empty_value' => '',
                 'required' => false,
                 'attr' => array('class' => 'span5 select2')
-                ))
+            ))
         ;
     }
 
@@ -48,16 +61,6 @@ class CategoryAdmin extends Admin
                 ->add('parent')
                 ->add('image')
                 ->add('enabled')
-        ;
-    }
-
-    public function validate(ErrorElement $errorElement, $object)
-    {
-        $errorElement
-            ->with('name')
-                ->assertNotBlank()
-                ->assertMaxLength(array('limit' => 255))
-            ->end()
         ;
     }
     public function prePersist($object)

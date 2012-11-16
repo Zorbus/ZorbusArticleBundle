@@ -19,21 +19,21 @@ services:
         class: %zorbus_article.article.admin.class%
         arguments: [~, %zorbus_article.article.entity.class%, %zorbus_article.article.controller.class%]
         calls:
-            - [setTranslationDomain, [ArticleBundle]]
+            - [setTranslationDomain, [ZorbusArticleBundle]]
         tags:
             - { name: sonata.admin, manager_type: orm, group: Articles, label: Articles }
     zorbus_article.category.admin:
         class: %zorbus_article.category.admin.class%
         arguments: [~, %zorbus_article.category.entity.class%, %zorbus_article.category.controller.class%]
         calls:
-            - [setTranslationDomain, [ArticleBundle]]
+            - [setTranslationDomain, [ZorbusArticleBundle]]
         tags:
             - { name: sonata.admin, manager_type: orm, group: Articles, label: Categories }
     zorbus_article.tag.admin:
         class: %zorbus_article.tag.admin.class%
         arguments: [~, %zorbus_article.tag.entity.class%, %zorbus_article.tag.controller.class%]
         calls:
-            - [setTranslationDomain, [ArticleBundle]]
+            - [setTranslationDomain, [ZorbusArticleBundle]]
         tags:
             - { name: sonata.admin, manager_type: orm, group: Articles, label: Tags }
     zorbus_article.block.article:

@@ -4,7 +4,8 @@ namespace Zorbus\ArticleBundle\Admin;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
-use Sonata\AdminBundle\Validator\ErrorElement;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\MaxLength;
 use Sonata\AdminBundle\Form\FormMapper;
 
 class TagAdmin extends Admin
@@ -12,7 +13,12 @@ class TagAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('name')
+            ->add('name', null, array(
+                'constraints' => array(
+                    new NotBlank(),
+                    new MaxLength(array('limit' => 255))
+                )
+            ))
             ->add('enabled')
         ;
     }
@@ -21,6 +27,7 @@ class TagAdmin extends Admin
     {
         $datagridMapper
             ->add('name')
+            ->add('enabled')
         ;
     }
 
@@ -29,15 +36,6 @@ class TagAdmin extends Admin
         $listMapper
             ->addIdentifier('name')
             ->add('enabled')
-        ;
-    }
-
-    public function validate(ErrorElement $errorElement, $object)
-    {
-        $errorElement
-            ->with('name')
-                ->assertMaxLength(array('limit' => 255))
-            ->end()
         ;
     }
 }

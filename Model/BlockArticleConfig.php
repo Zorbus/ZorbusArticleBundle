@@ -24,7 +24,11 @@ class BlockArticleConfig extends BlockConfig
                             'class' => 'Zorbus\\ArticleBundle\\Entity\\Article',
                             'attr' => array('class' => 'span5 select2')
                         ))
-                        ->add('name', 'text')
+                        ->add('name', 'text', array(
+                            'constraints' => array(
+                                new \Symfony\Component\Validator\Constraints\NotBlank()
+                            )
+                        ))
                         ->add('lang', 'text', array('required' => false))
                         ->add('theme', 'choice', array(
                             'choices' => $this->getThemes(),
