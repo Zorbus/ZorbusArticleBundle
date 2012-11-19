@@ -3,6 +3,7 @@ namespace Zorbus\ArticleBundle\Admin;
 
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
+use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\MaxLength;
@@ -28,6 +29,14 @@ class TagAdmin extends Admin
         $datagridMapper
             ->add('name')
             ->add('enabled')
+        ;
+    }
+
+    public function configureShowFields(ShowMapper $filter)
+    {
+        $filter
+                ->add('name')
+                ->add('enabled')
         ;
     }
 
