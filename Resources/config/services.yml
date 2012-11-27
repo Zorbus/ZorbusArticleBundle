@@ -43,7 +43,7 @@ services:
         calls:
           - [addThemes, [%zorbus_article.article.themes%]]
         tags:
-            - { name: zorbus_block.block, category: Articles }
+            - { name: zorbus_block.block, category: Article }
     zorbus_article.block.category:
         class: %zorbus_article.block.category.class%
         scope: prototype
@@ -51,4 +51,4 @@ services:
         calls:
           - [addThemes, [%zorbus_article.category.themes%]]
         tags:
-            - { name: zorbus_block.block, category: Articles }
+            - { name: zorbus_block.block, category: Article }
