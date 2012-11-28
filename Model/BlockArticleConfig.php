@@ -58,7 +58,7 @@ class BlockArticleConfig extends BlockConfig
 
         $block->setService($this->getService());
         $block->setCategory('Article');
-        $block->setParameters(json_encode(array('article_id' => $data['article']->getId())));
+        $block->setParameters(json_encode(array('article' => $data['article']->getId())));
         $block->setName($data['name']);
         $block->setLang($data['lang']);
         $block->setTheme($data['theme']);
