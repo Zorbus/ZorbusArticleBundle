@@ -5,32 +5,28 @@ namespace Zorbus\ArticleBundle\Model;
 use Zorbus\BlockBundle\Entity\Block as BlockEntity;
 use Sonata\AdminBundle\Admin\AdminInterface;
 use Symfony\Component\Form\FormFactory;
-use Zorbus\BlockBundle\Model\BlockConfig;
 use Symfony\Component\Validator\Constraints\NotBlank;
-use Symfony\Component\Validator\Constraints\Type;
 use Symfony\Component\Validator\Constraints\Min;
 
-class BlockArticleConfig extends BlockConfig
+class BlockArticleConfig extends BaseBlockArticleConfig
 {
 
-    public function __construct(AdminInterface $admin, FormFactory $formFactory, $httpKernel)
+    public function __construct(AdminInterface $admin, FormFactory $formFactory, $httpKernel, $em)
     {
         parent::__construct('zorbus_article.block.article', 'Article Block', $admin, $formFactory);
         $this->enabled = true;
         $this->httpKernel = $httpKernel;
+        $this->setEntityManager($em);
     }
 
     public function getFormMapper()
     {
         return $this->formMapper
-                        ->add('article', 'entity', array(
-                            'class' => 'Zorbus\ArticleBundle\Entity\Article',
+                        ->add('article', 'choice', array(
+                            'choices' => $this->getArticlesAsArray(),
                             'attr' => array('class' => 'span5 select2'),
                             'constraints' => array(
-                                new NotBlank(),
-                                new Type(array(
-                                    'type' => 'Zorbus\ArticleBundle\Entity\Article'
-                                ))
+                                new NotBlank()
                             )
                         ))
                         ->add('name', 'text', array(
@@ -58,7 +54,7 @@ class BlockArticleConfig extends BlockConfig
 
         $block->setService($this->getService());
         $block->setCategory('Article');
-        $block->setParameters(json_encode(array('article' => $data['article']->getId())));
+        $block->setParameters(json_encode(array('article' => $data['article'])));
         $block->setName($data['name']);
         $block->setLang($data['lang']);
         $block->setTheme($data['theme']);

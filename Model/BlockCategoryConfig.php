@@ -5,32 +5,28 @@ namespace Zorbus\ArticleBundle\Model;
 use Zorbus\BlockBundle\Entity\Block as BlockEntity;
 use Sonata\AdminBundle\Admin\AdminInterface;
 use Symfony\Component\Form\FormFactory;
-use Zorbus\BlockBundle\Model\BlockConfig;
 use Symfony\Component\Validator\Constraints\NotBlank;
-use Symfony\Component\Validator\Constraints\Type;
 use Symfony\Component\Validator\Constraints\Min;
 
-class BlockCategoryConfig extends BlockConfig
+class BlockCategoryConfig extends BaseBlockCategoryConfig
 {
 
-    public function __construct(AdminInterface $admin, FormFactory $formFactory, $httpKernel)
+    public function __construct(AdminInterface $admin, FormFactory $formFactory, $httpKernel, $em)
     {
         parent::__construct('zorbus_article.block.category', 'Category Block', $admin, $formFactory);
         $this->enabled = true;
         $this->httpKernel = $httpKernel;
+        $this->setEntityManager($em);
     }
 
     public function getFormMapper()
     {
         return $this->formMapper
-                        ->add('category', 'entity', array(
-                            'class' => 'Zorbus\ArticleBundle\Entity\Category',
+                        ->add('category', 'choice', array(
+                            'choices' => $this->getCategoriesAsArray(),
                             'attr' => array('class' => 'span5 select2'),
                             'constraints' => array(
-                                new NotBlank(),
-                                new Type(array(
-                                    'type' => 'Zorbus\ArticleBundle\Entity\Category'
-                                ))
+                                new NotBlank()
                             )
                         ))
                         ->add('name', 'text', array(
@@ -58,7 +54,7 @@ class BlockCategoryConfig extends BlockConfig
 
         $block->setService($this->getService());
         $block->setCategory('Article');
-        $block->setParameters(json_encode(array('category' => $data['category']->getId())));
+        $block->setParameters(json_encode(array('category' => $data['category'])));
         $block->setName($data['name']);
         $block->setLang($data['lang']);
         $block->setTheme($data['theme']);

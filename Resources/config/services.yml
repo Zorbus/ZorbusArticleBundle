@@ -39,7 +39,7 @@ services:
     zorbus_article.block.article:
         class: %zorbus_article.block.article.class%
         scope: prototype
-        arguments: ['@zorbus_block.block.admin', '@form.factory', '@http_kernel']
+        arguments: ['@zorbus_block.block.admin', '@form.factory', '@http_kernel', '@doctrine.orm.entity_manager']
         calls:
           - [addThemes, [%zorbus_article.article.themes%]]
         tags:
@@ -47,7 +47,7 @@ services:
     zorbus_article.block.category:
         class: %zorbus_article.block.category.class%
         scope: prototype
-        arguments: ['@zorbus_block.block.admin', '@form.factory', '@http_kernel']
+        arguments: ['@zorbus_block.block.admin', '@form.factory', '@http_kernel', '@doctrine.orm.entity_manager']
         calls:
           - [addThemes, [%zorbus_article.category.themes%]]
         tags:
